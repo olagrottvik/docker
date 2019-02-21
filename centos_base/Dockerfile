@@ -17,3 +17,8 @@ RUN yum install binutils libX11-devel libXpm-devel libXft-devel libXext-devel -y
 RUN yum install gcc-gfortran openssl-devel pcre-devel mesa-libGL-devel mesa-libGLU-devel glew-devel ftgl-devel mysql-devel fftw-devel cfitsio-devel graphviz-devel avahi-compat-libdns_sd-devel libldap-dev python-devel libxml2-devel gsl-static -y
 RUN tar xvf root_v6.16.00.Linux-centos7-x86_64-gcc4.8.tar.gz
 RUN rm -f root_v6.16.00.Linux-centos7-x86_64-gcc4.8.tar.gz
+RUN useradd -ms /bin/bash builder
+RUN chown builder:builder /home/builder
+RUN chmod 700 /home/builder
+USER builder
+COPY .bashrc /home/builder/.bashrc
